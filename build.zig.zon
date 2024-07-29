@@ -1,0 +1,15 @@
+.{
+    .name = "stb_image",
+    .version = "0.0.0",
+    .dependencies = .{
+        .stbi = .{
+            .url = "https://github.com/nothings/stb/archive/refs/heads/master.zip",
+            .hash = "1220144256113210beb90ac4b0d6f469a6da267869d9fcb6c3f49a909d63cd2cd9f6",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
