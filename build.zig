@@ -4,8 +4,14 @@ const Build = std.Build;
 pub fn build(
     b: *Build,
 ) void {
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
+
     const stbi = b.addModule("stbi", .{
         .root_source_file = b.path("src/stbi.zig"),
+        .optimize = optimize,
+        .target = target,
+        .link_libc = true,
     });
 
     const stbiDep = b.dependency("stbi", .{});
@@ -19,5 +25,4 @@ pub fn build(
         .file = write.getDirectory().path(b, implName),
         .flags = &.{},
     });
-    stbi.link_libc = true;
 }
