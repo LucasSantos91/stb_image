@@ -4,7 +4,7 @@
     .dependencies = .{
         .stbi = .{
             .url = "https://github.com/nothings/stb/archive/refs/heads/master.zip",
-            .hash = "1220144256113210beb90ac4b0d6f469a6da267869d9fcb6c3f49a909d63cd2cd9f6",
+            .hash = "1220c4fe5a4c4ebec402f5cdef08bc264b56fb07f259107d2b01ba8d416d88624b50",
         },
     },
     .paths = .{
