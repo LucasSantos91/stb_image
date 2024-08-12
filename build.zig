@@ -6,12 +6,18 @@ pub fn build(
 ) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+    const strip = b.option(
+        bool,
+        "strip",
+        "Strip debug info.",
+    ) orelse (optimize != .Debug);
 
     const stbi = b.addModule("stbi", .{
         .root_source_file = b.path("src/stbi.zig"),
         .optimize = optimize,
         .target = target,
         .link_libc = true,
+        .strip = strip,
     });
 
     const stbiDep = b.dependency("stbi", .{});
