@@ -3,8 +3,8 @@
     .version = "0.0.0",
     .dependencies = .{
         .stbi = .{
-            .url = "https://github.com/nothings/stb/archive/refs/heads/master.zip",
-            .hash = "1220c4fe5a4c4ebec402f5cdef08bc264b56fb07f259107d2b01ba8d416d88624b50",
+            .url = "https://github.com/nothings/stb/archive/31707d14fdb75da66b3eed52a2236a70af0d0960.zip",
+            .hash = "1220aefdc5ff6261afb86675b54f987d9e86c575049b2050ee8f23d49c954ff4970a",
         },
     },
     .paths = .{
