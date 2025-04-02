@@ -1,5 +1,5 @@
 .{
-    .name = "stb_image",
+    .name = .stb_image,
     .version = "0.0.0",
     .dependencies = .{
         .stbi = .{
@@ -12,4 +12,5 @@
         "build.zig.zon",
         "src",
     },
+    .fingerprint = 0xe5d36078c1d70cce,
 }
