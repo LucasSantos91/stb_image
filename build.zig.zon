@@ -11,6 +11,7 @@
         "build.zig",
         "build.zig.zon",
         "example",
+        "README.md",
     },
     .fingerprint = 0xe5d36078c1d70cce,
 }
