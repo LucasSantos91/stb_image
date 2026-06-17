@@ -1,23 +1,28 @@
 const std = @import("std");
-const Build = std.Build;
 
-pub fn build(
-    b: *Build,
-) void {
-    const stbi = b.addModule("stbi", .{
-        .root_source_file = b.path("src/stbi.zig"),
+pub fn build(b: *std.Build) void {
+    const optimize = b.standardOptimizeOption(.{});
+    const target = b.standardTargetOptions(.{});
+    const stb_dep = b.dependency("stb", .{});
+    const stbi_path = stb_dep.path("stb_image.h");
+    const translate = b.addTranslateC(.{
+        .root_source_file = stbi_path,
+        .optimize = optimize,
+        .target = target,
+    });
+    const stbi_module = b.addModule("stbi", .{
+        .root_source_file = translate.getOutput(),
+        .optimize = optimize,
+        .target = target,
         .link_libc = true,
     });
-
-    const stbiDep = b.dependency("stbi", .{});
-    stbi.addIncludePath(stbiDep.path(&.{}));
-    const implName = "stbiImpl.c";
-    const write = b.addWriteFile(implName,
-        \\#define STB_IMAGE_IMPLEMENTATION
-        \\#include "stb_image.h"
-    );
-    stbi.addCSourceFile(.{
-        .file = write.getDirectory().path(b, implName),
-        .flags = &.{},
+    stbi_module.addCSourceFile(.{
+        .file = stbi_path,
+        .language = .c,
     });
+    stbi_module.addCMacro("STB_IMAGE_IMPLEMENTATION", "1");
+    if (optimize != .Debug) {
+        stbi_module.addCMacro("NDEBUG", "1");
+        translate.defineCMacro("NDEBUG", "1");
+    }
 }
